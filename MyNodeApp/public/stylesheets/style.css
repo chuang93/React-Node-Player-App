@@ -1,0 +1,15 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-align: center;
+  margin: auto;
+}
+p {
+  color: #800080;
+  text-align: center;
+  margin: auto;
+}
+#drawer {
+  text-align: center;
+  margin: auto;
+}

@@ -9,6 +9,9 @@ p {
   text-align: center;
   margin: auto;
 }
+li {
+  list-style-type: none;
+}
 #drawer {
   text-align: center;
   margin: auto;

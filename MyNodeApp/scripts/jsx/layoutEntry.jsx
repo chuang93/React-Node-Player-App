@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {white,darkBlack,fullBlack, indigo900,orange500,orange600,cyanA100,yellow600} from 'material-ui/styles/colors';
+import {fade} from 'material-ui/utils/colorManipulator';
+import IconButton from 'material-ui/IconButton';
+import ActionHome from 'material-ui/svg-icons/action/home';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -20,17 +23,26 @@ const muiTheme = getMuiTheme({
     accent3Color: orange500,
     textColor: indigo900,
     alternateTextColor: white,
-    canvasColor: darkBlack,
+    canvasColor: orange500,
     borderColor: indigo900,
-    disabledColor: darkBlack,
+    disabledColor: fade(darkBlack, 0.3),
     pickerHeaderColor: cyanA100,
     clockCircleColor: darkBlack,
         shadowColor: fullBlack,
-  },
-  drawer:{
-    docked:false,
   }
 })
+
+const styles ={
+  mediumIcon: {
+    width: 48,
+    height: 48,
+  },
+  medium: {
+    width: 96,
+    height: 96,
+    padding: 24,
+  },
+}
 export default class DrawerSimpleExample extends React.Component {
 
   constructor(props) {
@@ -46,14 +58,27 @@ export default class DrawerSimpleExample extends React.Component {
 
   render() {
     return (
+
       <MuiThemeProvider muiTheme={muiTheme}>
       <div>
         <RaisedButton
           label="Menu"
           onTouchTap={this.handleToggle}
         />
-        <Drawer open={this.state.open}>
-          <MenuItem>Home Page</MenuItem>
+         <Drawer
+          docked={false}
+          width={300}
+          open={this.state.open}
+          onRequestChange={(open) => this.setState({open})}
+         >
+          <MenuItem> 
+            <IconButton
+              iconStyle={styles.mediumIcon}
+              style={styles.medium}
+            >
+              <ActionHome />
+            </IconButton>
+          </MenuItem>
           <MenuItem>Other Projects</MenuItem>
           <MenuItem>About Me - Contact</MenuItem>
         </Drawer>

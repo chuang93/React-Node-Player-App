@@ -1,5 +1,5 @@
 ﻿var React = require('react');
 var ReactDOM = require('react-dom');
-var TestApp = require('./playerProfileModel.jsx').default;
+var PlayerModel = require('./playerProfileModel.jsx').default;
 
-ReactDOM.render(<TestApp/>, document.getElementById('main'));
+ReactDOM.render(<PlayerModel/>, document.getElementById('main'));

@@ -63,40 +63,53 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 426);
+/******/ 	return __webpack_require__(__webpack_require__.s = 164);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 426:
+/***/ 107:
+/***/ (function(module, exports) {
+
+module.exports = {XMLHttpRequest:XMLHttpRequest};
+
+/***/ }),
+
+/***/ 164:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 //test if ajax call to my rest service will load the json into the player log ID in playerAPp.pug
-var request = new XMLHttpRequest();
-request.open('GET', '/playerApp/203083', true);
+var XMLHttpRequest = __webpack_require__(107).XMLHttpRequest;
 
-request.onload = function () {
-  if (request.status >= 200 && request.status < 400) {
-    // Success!
-    var data = request.responseText;
-    //console.log(data);
-    var playerlog = document.getElementById('playerLog');
-    playerlog.innerHTML = data;
-  } else {
-    // We reached our target server, but it returned an error
-    console.log("reached playerApp/ID but server error");
-  }
+module.exports.playerLogServerPromise = function playerLogServerPromise(id) {
+  return new Promise(function (resolve, reject) {
+    var request = new XMLHttpRequest();
+    request.open('GET', '/playerApp/' + id, true);
+
+    request.onload = function () {
+      if (request.status >= 200 && request.status < 400) {
+        // Success!
+        var data = JSON.parse(request.response);
+        var log = data.gameLogJson;
+        resolve(log);
+      } else {
+        // We reached our target server, but it returned an error
+        console.log("reached playerApp/ID but server error");
+        reject(Error(request.statusText));
+      }
+    };
+    request.onerror = function () {
+      reject(Error("Network Error"));
+      // There was a connection error of some sort
+      console.log("connection error to server, not reached");
+    };
+
+    request.send();
+  });
 };
-
-request.onerror = function () {
-  // There was a connection error of some sort
-  console.log("connection error to server, not reached");
-};
-
-request.send();
 
 /***/ })
 

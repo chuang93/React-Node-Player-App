@@ -51,26 +51,3 @@ function PlayerLog(ajaxResponse) {
     this.Headers = this.playerLogObject.resultSets[0].headers;
     this.RowSet = this.playerLogObject.resultSets[0].rowSet;
 }
-
-function postJSONStringToServerAJAX(urlAction, playerLog) {
-    $.ajax({
-        url: urlAction,
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({
-            "PlayerID": playerLog.PlayerID,
-            "Season": playerLog.Season,
-            "SeasonType": playerLog.SeasonType,
-            "Resource": playerLog.Resource,
-            "Headers": playerLog.Headers,
-            "RowSet": playerLog.RowSet
-        }),
-        error: function(response) {
-            alert(response.responseText);
-        },
-        success: function(response) {
-            alert(response);
-        }
-
-    });
-}

@@ -10,6 +10,8 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import PlayerModel from './playerProfileModel.jsx';
+
 injectTapEventPlugin();
 
 const muiTheme = getMuiTheme({
@@ -43,7 +45,7 @@ const styles ={
     padding: 24,
   },
 }
-export default class DrawerSimpleExample extends React.Component {
+export default class AppLayout extends React.Component {
 
   constructor(props) {
     //NEWER VERSIONS OF REACT REQUIRE A [handler].bind(this) since they are NOT AUTOBOUND.
@@ -65,6 +67,7 @@ export default class DrawerSimpleExample extends React.Component {
           label="Menu"
           onTouchTap={this.handleToggle}
         />
+        <PlayerModel />
          <Drawer
           docked={false}
           width={300}
@@ -88,4 +91,4 @@ export default class DrawerSimpleExample extends React.Component {
   }
 }
 
-ReactDOM.render(<DrawerSimpleExample/>, document.getElementById("drawer"));
+ReactDOM.render(<AppLayout/>, document.getElementById("appLayout"));

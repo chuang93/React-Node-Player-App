@@ -1,11 +1,18 @@
 ﻿extends layout
 
 block content
-	#main main ID2
+	#main div of ID main
+	#playerLog=body
 	//- script
 	//- 	|console.log("pug tip: highlight code for tabs, '|' for scripts")
-	ul
-		each player in playerProfs
-			li=player.firstname +" " + player.lastname
+
+	if playerProfs
+		script.
+			console.log("playerProfs object pulled from Database.")
+		ul
+			each player in playerProfs
+				li=player.firstname +" " + player.lastname
+
 
 	script(src = "./javascripts/playerApp.js")
+	script(src = "./javascripts/test.js")

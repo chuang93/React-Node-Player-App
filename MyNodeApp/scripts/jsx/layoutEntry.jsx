@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router, Route, Link, browserHistory } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {white,darkBlack,fullBlack, indigo900,orange500,orange600,cyanA100,yellow600} from 'material-ui/styles/colors';
@@ -67,7 +68,7 @@ export default class AppLayout extends React.Component {
           label="Menu"
           onTouchTap={this.handleToggle}
         />
-        <PlayerModel />
+        <PlayerModel/>
          <Drawer
           docked={false}
           width={300}
@@ -91,4 +92,10 @@ export default class AppLayout extends React.Component {
   }
 }
 
-ReactDOM.render(<AppLayout/>, document.getElementById("appLayout"));
+ReactDOM.render(
+  <Router history={browserHistory}>
+    <Route path="/" component={AppLayout}>
+    </Route>
+    <Route path="/playerApp" component={AppLayout}>
+    </Route>
+  </Router>, document.getElementById("appLayout"));

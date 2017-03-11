@@ -63,26 +63,26 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 164);
+/******/ 	return __webpack_require__(__webpack_require__.s = 171);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 107:
+/***/ 110:
 /***/ (function(module, exports) {
 
 module.exports = {XMLHttpRequest:XMLHttpRequest};
 
 /***/ }),
 
-/***/ 164:
+/***/ 171:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 //test if ajax call to my rest service will load the json into the player log ID in playerAPp.pug
-var XMLHttpRequest = __webpack_require__(107).XMLHttpRequest;
+var XMLHttpRequest = __webpack_require__(110).XMLHttpRequest;
 
 module.exports.playerLogServerPromise = function playerLogServerPromise(id) {
   return new Promise(function (resolve, reject) {

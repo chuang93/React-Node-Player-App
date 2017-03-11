@@ -98,7 +98,7 @@ export default class PlayerSearch extends React.Component {
 		return(
   		<div>
     		<AutoComplete
-      		floatingLabelText="showAllItems"
+      		floatingLabelText="Current player selected:"
       		onClick={this.getPlayerIdsFromServer}
       		filter={AutoComplete.noFilter}
       		openOnFocus={true}

@@ -4,9 +4,7 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        playerApp: ["./scripts/jsx/playerAppEntry.jsx","./scripts/playerProfileWebAPI.js"],
         layout: "./scripts/jsx/layoutEntry.jsx",
-        serverCalls: "./scripts/serverCalls.js"
     },
     output: {
         filename: "./public/javascripts/[Name].js"

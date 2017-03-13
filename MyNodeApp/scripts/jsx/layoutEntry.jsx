@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, Link, browserHistory } from 'react-router';
+import {IndexRoute, Router, Route, Link, hashHistory, browserHistory } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {white,darkBlack,fullBlack, indigo900,orange500,orange600,cyanA100,yellow600} from 'material-ui/styles/colors';
@@ -85,6 +85,7 @@ export default class AppLayout extends React.Component {
           <MenuItem>Other Projects</MenuItem>
           <MenuItem>About Me - Contact</MenuItem>
         </Drawer>
+        {this.props.children}
       </div>
     );
   }
@@ -92,12 +93,13 @@ export default class AppLayout extends React.Component {
 
 ReactDOM.render(
 <MuiThemeProvider muiTheme={muiTheme}>
- <div>
-  <AppLayout/>
+  <div>
   <Router history={browserHistory}>
+    <Route path = "/" component = {AppLayout}>
 
-    <Route path="/playerApp" component={PlayerModel}>
-    </Route>
+    <Route path="/playerApp" component={PlayerModel}/>
+      </Route>
   </Router>
   </div>
-</MuiThemeProvider>, document.getElementById("appLayout"));
+</MuiThemeProvider>, 
+document.getElementById("appLayout"));

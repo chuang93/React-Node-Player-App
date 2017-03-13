@@ -9,7 +9,6 @@ export default class PlayerModel extends React.Component {
         return (
          	<div style={{textAlign: 'center'}}>
          	<PlayerSearch />
-            <h1>NBA Player Tracker App</h1>
           </div>);
 	}
 }

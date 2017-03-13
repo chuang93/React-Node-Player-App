@@ -2,13 +2,13 @@
 var router = express.Router();
 var playerwebapi = require('../scripts/playerProfileWebAPI.js');
 var request = require('request');
-
+//route namespaces are more a function of the app they control as opposed to a set of views rendered now.
 router.get('/', function (req, res) {
 	try{
   	var collection = req.app.locals.db.collection('playerProfiles');
   	collection.find().toArray(function(e,docs){
   		console.log(docs.length +" documents/records retrieved from mongo.");
-          res.render('playerApp', { 
+          res.render('index', { 
           	playerProfs: docs,
           	title: "Player Profiles",
             playerLog:"use URL to submit official NBA.com Player ID (e.g '.../201566' for Russell Westbrook).",

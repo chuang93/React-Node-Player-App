@@ -11,6 +11,7 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import HomeView from './HomeView.jsx';
 import PlayerModel from './playerProfileModel.jsx';
 
 injectTapEventPlugin();
@@ -61,45 +62,44 @@ export default class AppLayout extends React.Component {
 
   render() {
     return (
-
+    <MuiThemeProvider muiTheme={muiTheme}>
       <div>
         <RaisedButton
           label="Menu"
           onTouchTap={this.handleToggle}
         />
-         <Drawer
+        <Drawer
           docked={false}
           width={300}
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}
-         >
-         <MenuItem> <Link to={'/'}> 
+        >
+         <MenuItem> 
+          <Link to= {'/'}
+            onClick= {this.handleToggle}> 
             <IconButton
               iconStyle={styles.mediumIcon}
               style={styles.medium}
             >
               <ActionHome />
             </IconButton>
-            </Link>
-          </MenuItem>
-          <MenuItem>Other Projects</MenuItem>
-          <MenuItem>About Me - Contact</MenuItem>
+          </Link>
+        </MenuItem>
+        <MenuItem>Other Projects</MenuItem>
+        <MenuItem>About Me - Contact</MenuItem>
         </Drawer>
         {this.props.children}
       </div>
+      </MuiThemeProvider>
     );
   }
 }
 
 ReactDOM.render(
-<MuiThemeProvider muiTheme={muiTheme}>
-  <div>
   <Router history={browserHistory}>
     <Route path = "/" component = {AppLayout}>
-
-    <Route path="/playerApp" component={PlayerModel}/>
-      </Route>
-  </Router>
-  </div>
-</MuiThemeProvider>, 
+      <IndexRoute component={HomeView} />
+      <Route path="/playerApp" component={PlayerModel} />
+    </Route>
+  </Router>, 
 document.getElementById("appLayout"));

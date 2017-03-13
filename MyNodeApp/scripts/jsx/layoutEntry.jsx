@@ -62,40 +62,42 @@ export default class AppLayout extends React.Component {
   render() {
     return (
 
-      <MuiThemeProvider muiTheme={muiTheme}>
       <div>
         <RaisedButton
           label="Menu"
           onTouchTap={this.handleToggle}
         />
-        <PlayerModel/>
          <Drawer
           docked={false}
           width={300}
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}
          >
-          <MenuItem> 
+         <MenuItem> <Link to={'/'}> 
             <IconButton
               iconStyle={styles.mediumIcon}
               style={styles.medium}
             >
               <ActionHome />
             </IconButton>
+            </Link>
           </MenuItem>
           <MenuItem>Other Projects</MenuItem>
           <MenuItem>About Me - Contact</MenuItem>
         </Drawer>
       </div>
-      </MuiThemeProvider>
     );
   }
 }
 
 ReactDOM.render(
+<MuiThemeProvider muiTheme={muiTheme}>
+ <div>
+  <AppLayout/>
   <Router history={browserHistory}>
-    <Route path="/" component={AppLayout}>
+
+    <Route path="/playerApp" component={PlayerModel}>
     </Route>
-    <Route path="/playerApp" component={AppLayout}>
-    </Route>
-  </Router>, document.getElementById("appLayout"));
+  </Router>
+  </div>
+</MuiThemeProvider>, document.getElementById("appLayout"));

@@ -46122,29 +46122,29 @@ var AppLayout = function (_React$Component) {
       var _this2 = this;
 
       return _react2.default.createElement(
-        _MuiThemeProvider2.default,
-        { muiTheme: muiTheme },
+        'div',
+        null,
+        _react2.default.createElement(_RaisedButton2.default, {
+          label: 'Menu',
+          onTouchTap: this.handleToggle
+        }),
         _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(_RaisedButton2.default, {
-            label: 'Menu',
-            onTouchTap: this.handleToggle
-          }),
-          _react2.default.createElement(_playerProfileModel2.default, null),
+          _Drawer2.default,
+          {
+            docked: false,
+            width: 300,
+            open: this.state.open,
+            onRequestChange: function onRequestChange(open) {
+              return _this2.setState({ open: open });
+            }
+          },
           _react2.default.createElement(
-            _Drawer2.default,
-            {
-              docked: false,
-              width: 300,
-              open: this.state.open,
-              onRequestChange: function onRequestChange(open) {
-                return _this2.setState({ open: open });
-              }
-            },
+            _MenuItem2.default,
+            null,
+            ' ',
             _react2.default.createElement(
-              _MenuItem2.default,
-              null,
+              _reactRouter.Link,
+              { to: '/' },
               _react2.default.createElement(
                 _IconButton2.default,
                 {
@@ -46153,17 +46153,17 @@ var AppLayout = function (_React$Component) {
                 },
                 _react2.default.createElement(_home2.default, null)
               )
-            ),
-            _react2.default.createElement(
-              _MenuItem2.default,
-              null,
-              'Other Projects'
-            ),
-            _react2.default.createElement(
-              _MenuItem2.default,
-              null,
-              'About Me - Contact'
             )
+          ),
+          _react2.default.createElement(
+            _MenuItem2.default,
+            null,
+            'Other Projects'
+          ),
+          _react2.default.createElement(
+            _MenuItem2.default,
+            null,
+            'About Me - Contact'
           )
         )
       );
@@ -46177,10 +46177,18 @@ exports.default = AppLayout;
 
 
 _reactDom2.default.render(_react2.default.createElement(
-  _reactRouter.Router,
-  { history: _reactRouter.browserHistory },
-  _react2.default.createElement(_reactRouter.Route, { path: '/', component: AppLayout }),
-  _react2.default.createElement(_reactRouter.Route, { path: '/playerApp', component: AppLayout })
+  _MuiThemeProvider2.default,
+  { muiTheme: muiTheme },
+  _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(AppLayout, null),
+    _react2.default.createElement(
+      _reactRouter.Router,
+      { history: _reactRouter.browserHistory },
+      _react2.default.createElement(_reactRouter.Route, { path: '/playerApp', component: _playerProfileModel2.default })
+    )
+  )
 ), document.getElementById("appLayout"));
 
 /***/ })

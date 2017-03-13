@@ -12,8 +12,8 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import HomeView from './HomeView.jsx';
+import ContactView from './Contact.jsx';
 import PlayerModel from './playerProfileModel.jsx';
-
 injectTapEventPlugin();
 
 const muiTheme = getMuiTheme({
@@ -74,21 +74,28 @@ export default class AppLayout extends React.Component {
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}
         >
-         <MenuItem> 
-          <Link to= {'/'}
-            onClick= {this.handleToggle}> 
+        <Link to= {'/'}
+          onClick= {this.handleToggle}> 
+          <MenuItem> 
             <IconButton
               iconStyle={styles.mediumIcon}
               style={styles.medium}
             >
               <ActionHome />
             </IconButton>
-          </Link>
-        </MenuItem>
-        <MenuItem>Other Projects</MenuItem>
-        <MenuItem>About Me - Contact</MenuItem>
+          </MenuItem>
+        </Link>
+        <Link to= {'/playerApp'}
+            onClick= {this.handleToggle}> 
+            <MenuItem>Other Projects</MenuItem>
+        </Link>
+        <Link to= {'/contact'}
+            onClick= {this.handleToggle}> 
+          <MenuItem>About Me - Contact</MenuItem>
+        </Link>
         </Drawer>
         {this.props.children}
+      {/*NEED THIS PROPS.CHILDREN TO PASS IN CHILD ROUTES IN THE ROUTER OF INDEX*/}
       </div>
       </MuiThemeProvider>
     );
@@ -99,7 +106,8 @@ ReactDOM.render(
   <Router history={browserHistory}>
     <Route path = "/" component = {AppLayout}>
       <IndexRoute component={HomeView} />
-      <Route path="/playerApp" component={PlayerModel} />
+      <Route path= "/playerApp" component={PlayerModel} />
+      <Route path= "/contact" component={ContactView} /> 
     </Route>
   </Router>, 
 document.getElementById("appLayout"));

@@ -17098,6 +17098,11 @@ var PlayerModel = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { style: { textAlign: 'center' } },
+        _react2.default.createElement(
+          'div',
+          null,
+          ' hello'
+        ),
         _react2.default.createElement(_playerSearch2.default, null)
       );
     }

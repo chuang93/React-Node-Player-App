@@ -8,6 +8,7 @@ export default class PlayerModel extends React.Component {
     render() {
         return (
          	<div style={{textAlign: 'center'}}>
+         	<div> hello</div>
          	<PlayerSearch />
           </div>);
 	}

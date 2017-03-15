@@ -1,9 +1,25 @@
-﻿var express = require('express');
+﻿import express from 'express';
+import request from 'request';
+import playerwebapi from '../scripts/playerProfileWebAPI.js';
+import AppRoutes from '../scripts/jsx/AppRoutes.jsx';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import {match, createRoutes, RouterContext} from 'react-router';
+import {StaticRouter } from 'react-router';
+
 var router = express.Router();
-var playerwebapi = require('../scripts/playerProfileWebAPI.js');
-var request = require('request');
-//route namespaces are more a function of the app they control as opposed to a set of views rendered now.
+
+
 router.get('/', function (req, res) {
+  const context = {};
+  const htmlRendered = ReactDOMServer.renderToString(
+    <StaticRouter
+     location ={req.url}
+     context = {context}>
+      <AppRoutes/>
+    </StaticRouter>
+    );
+
 	try{
   	var collection = req.app.locals.db.collection('playerProfiles');
   	collection.find().toArray(function(e,docs){
@@ -12,15 +28,13 @@ router.get('/', function (req, res) {
           	playerProfs: docs,
           	title: "Player Profiles",
             playerLog:"use URL to submit official NBA.com Player ID (e.g '.../201566' for Russell Westbrook).",
+            appLayout : htmlRendered
           });
         });
   }
-  catch(e){
+  catch(error){
   	console.log("failed to render player app endpoint, routing to error endpoint..");
-  	res.render('error',{
-  		'message' :e,
-
-  	});
+  	res.json(error);
 
   }
 });
@@ -33,12 +47,9 @@ router.get('/players', function(req,res){
           res.json(docs);
         });
   }
-  catch(e){
+  catch(error){
     console.log("failed to get player list from Database playerProfiles");
-    res.render('error',{
-      'message' :e,
-
-    });
+    res.json(error);
 
   }
 });

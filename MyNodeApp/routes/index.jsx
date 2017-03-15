@@ -23,7 +23,6 @@ router.get('/', function (req, res) {
     res.render('index', 
     	{ title: 'Express',
     	   appLayout: htmlRendered });
-    //res.send(htmlRendered);
 });
 
 module.exports = router;

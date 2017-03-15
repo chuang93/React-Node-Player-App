@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter as Router, Route, Link,} from 'react-router-dom';
+import {BrowserRouter, Router, Route, Link,} from 'react-router-dom';
 import AppLayout from './layoutEntry.jsx';
 import HomeView from './HomeView.jsx';
 import ContactView from './Contact.jsx';
@@ -10,8 +10,6 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 injectTapEventPlugin();
 
-const history = createBrowserHistory()
-
 
 export default class AppRoutes extends React.Component {
 	constructor(props){
@@ -19,8 +17,6 @@ export default class AppRoutes extends React.Component {
 	}
 	render(){
 		return(
-			<Router history ={history}>
-				<div>
         		<AppLayout routes=
         		{{
         			"Home":"/",
@@ -31,13 +27,15 @@ export default class AppRoutes extends React.Component {
         		<Route path= "/playerapp" component= {PlayerModel}/>
         		<Route path= "/contact" component = {ContactView} />
         		</AppLayout>
-        		</div>
-    		</Router>
 			);
 	}
 }
 
 
-if(typeof window !== 'undefined') {// NEED THIS CONDITIONAL TO EXCLUDE SERVER SIDE DOCUMENT
-  ReactDOM.render(<AppRoutes />, document.getElementById("appLayout"));
+if(typeof window !== 'undefined') {//CLIENT SIDE: RENDERS WITH BROWSERROUTER
+  ReactDOM.render(
+  	<BrowserRouter>
+  	<AppRoutes />
+  	</BrowserRouter>
+  		, document.getElementById("appLayout"));
 }

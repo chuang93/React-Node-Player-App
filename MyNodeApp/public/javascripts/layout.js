@@ -44614,8 +44614,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 (0, _reactTapEventPlugin2.default)();
 
-var history = (0, _createBrowserHistory2.default)();
-
 var AppRoutes = function (_React$Component) {
   _inherits(AppRoutes, _React$Component);
 
@@ -44629,23 +44627,15 @@ var AppRoutes = function (_React$Component) {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        _reactRouterDom.BrowserRouter,
-        { history: history },
-        _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            _layoutEntry2.default,
-            { routes: {
-                "Home": "/",
-                "PlayerApp": "/playerapp",
-                "Contact": "/contact"
-              } },
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _HomeView2.default }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/playerapp', component: _playerProfileModel2.default }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/contact', component: _Contact2.default })
-          )
-        )
+        _layoutEntry2.default,
+        { routes: {
+            "Home": "/",
+            "PlayerApp": "/playerapp",
+            "Contact": "/contact"
+          } },
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _HomeView2.default }),
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/playerapp', component: _playerProfileModel2.default }),
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/contact', component: _Contact2.default })
       );
     }
   }]);
@@ -44658,7 +44648,11 @@ exports.default = AppRoutes;
 
 if (typeof window !== 'undefined') {
   // NEED THIS CONDITIONAL TO EXCLUDE SERVER SIDE DOCUMENT
-  _reactDom2.default.render(_react2.default.createElement(AppRoutes, null), document.getElementById("appLayout"));
+  _reactDom2.default.render(_react2.default.createElement(
+    _reactRouterDom.BrowserRouter,
+    null,
+    _react2.default.createElement(AppRoutes, null)
+  ), document.getElementById("appLayout"));
 }
 
 /***/ })

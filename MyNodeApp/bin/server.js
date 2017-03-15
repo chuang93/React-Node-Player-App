@@ -1,4 +1,6 @@
 ﻿#!/usr/bin/env node
+global.navigator = { userAgent: 'all' };
+//NEED THIS BECAUSE WE ARE NOW TALKING ABOUT SERVER SIDE 
 var debug = require('debug')('MyNodeApp');
 var app = require('../app');
 

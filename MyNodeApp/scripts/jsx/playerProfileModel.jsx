@@ -8,7 +8,7 @@ export default class PlayerModel extends React.Component {
     render() {
         return (
          	<div style={{textAlign: 'center'}}>
-         	<div> hello</div>
+         	<h2> ||Rendered React Router View of PlayerModel Component ||</h2>
          	<PlayerSearch />
           </div>);
 	}

@@ -4,7 +4,7 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        layout: "./scripts/jsx/layoutEntry.jsx",
+        layout: "./scripts/jsx/appRoutes.jsx",
     },
     output: {
         filename: "./public/javascripts/[Name].js"
@@ -20,7 +20,9 @@ module.exports = {
           { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
         ]
     },
+
     externals:[{
     xmlhttprequest: '{XMLHttpRequest:XMLHttpRequest}'
-}],
+    }],
+
 };

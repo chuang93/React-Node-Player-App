@@ -1,6 +1,5 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
-import {IndexRoute, Router, Route, Link, hashHistory, browserHistory } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {white,darkBlack,fullBlack, indigo900,orange500,orange600,cyanA100,yellow600} from 'material-ui/styles/colors';
@@ -10,12 +9,8 @@ import ActionHome from 'material-ui/svg-icons/action/home';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import {Link, Route} from 'react-router-dom';
 import HomeView from './HomeView.jsx';
-import ContactView from './Contact.jsx';
-import PlayerModel from './playerProfileModel.jsx';
-injectTapEventPlugin();
-
 const muiTheme = getMuiTheme({
   fontFamily: 'Arial',
   palette: {
@@ -47,6 +42,7 @@ const styles ={
     padding: 24,
   },
 }
+
 export default class AppLayout extends React.Component {
 
   constructor(props) {
@@ -61,6 +57,7 @@ export default class AppLayout extends React.Component {
   }
 
   render() {
+
     return (
     <MuiThemeProvider muiTheme={muiTheme}>
       <div>
@@ -74,27 +71,20 @@ export default class AppLayout extends React.Component {
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}
         >
-        <Link to= {'/'}
-          onClick= {this.handleToggle}> 
           <MenuItem> 
+            <Link to ={this.props.routes.Home} onClick={this.handleToggle}>
             <IconButton
               iconStyle={styles.mediumIcon}
               style={styles.medium}
             >
               <ActionHome />
             </IconButton>
+             </Link>
           </MenuItem>
-        </Link>
-        <Link to= {'/playerApp'}
-            onClick= {this.handleToggle}> 
-            <MenuItem>Other Projects</MenuItem>
-        </Link>
-        <Link to= {'/contact'}
-            onClick= {this.handleToggle}> 
-          <MenuItem>About Me - Contact</MenuItem>
-        </Link>
+          <MenuItem><Link to ={this.props.routes.PlayerApp} onClick={this.handleToggle}>NBA Player Log App</Link></MenuItem>
+          <MenuItem><Link to ={this.props.routes.Contact} onClick={this.handleToggle}>About Me - Contact</Link></MenuItem>
         </Drawer>
-        {this.props.children}
+          {this.props.children}
       {/*NEED THIS PROPS.CHILDREN TO PASS IN CHILD ROUTES IN THE ROUTER OF INDEX*/}
       </div>
       </MuiThemeProvider>
@@ -102,12 +92,5 @@ export default class AppLayout extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <Router history={browserHistory}>
-    <Route path = "/" component = {AppLayout}>
-      <IndexRoute component={HomeView} />
-      <Route path= "/playerApp" component={PlayerModel} />
-      <Route path= "/contact" component={ContactView} /> 
-    </Route>
-  </Router>, 
-document.getElementById("appLayout"));
+
+

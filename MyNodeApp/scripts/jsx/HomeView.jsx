@@ -6,7 +6,7 @@ export default class HomeView extends React.Component {
 	}
 	render(){
 		return (
-			<h2>||Place Holder for Index Route for the Home Index Page of the App.||</h2>
+			<h2>||Place Common Layout Rendering Here||</h2>
 			);
 	}
 }

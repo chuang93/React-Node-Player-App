@@ -16,7 +16,7 @@ router.get('/', function (req, res) {
     <StaticRouter
      location ={req.url}
      context = {context}>
-      <AppRoutes/>
+      <AppRoutes title="Hello"/>
     </StaticRouter>
     );
 

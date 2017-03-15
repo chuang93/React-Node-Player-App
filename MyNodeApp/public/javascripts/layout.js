@@ -16205,11 +16205,11 @@ var PlayerSearch = function (_React$Component) {
     }
   }, {
     key: 'handleUpdatePlayer',
-    value: function handleUpdatePlayer() {
+    value: function handleUpdatePlayer(searchText) {
       this.setState({
-        searchText: "RussellWestbrook"
+        searchText: searchText
       });
-      var name = "RussellWestbrook";
+      var name = searchText;
       console.log("name in search text: " + name);
       var request = new XMLHttpRequest();
       request.open('GET', '/playerApp/players', true);
@@ -16243,6 +16243,7 @@ var PlayerSearch = function (_React$Component) {
         'div',
         null,
         _react2.default.createElement(_AutoComplete2.default, {
+          hintText: 'e.g \'RussellWestbrook\'',
           floatingLabelText: 'Current player selected:',
           onClick: this.getPlayerIdsFromServer,
           filter: _AutoComplete2.default.noFilter,
@@ -44647,7 +44648,7 @@ exports.default = AppRoutes;
 
 
 if (typeof window !== 'undefined') {
-  // NEED THIS CONDITIONAL TO EXCLUDE SERVER SIDE DOCUMENT
+  //CLIENT SIDE: RENDERS WITH BROWSERROUTER
   _reactDom2.default.render(_react2.default.createElement(
     _reactRouterDom.BrowserRouter,
     null,

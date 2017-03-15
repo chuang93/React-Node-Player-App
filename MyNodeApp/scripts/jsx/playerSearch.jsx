@@ -63,11 +63,11 @@ export default class PlayerSearch extends React.Component {
         });
     }
 
-    handleUpdatePlayer(){
+    handleUpdatePlayer(searchText){
     this.setState({
-      searchText: "RussellWestbrook",
+      searchText: searchText,
     });
-    var name="RussellWestbrook";
+    var name=searchText;
     console.log("name in search text: " + name);
     var request = new XMLHttpRequest();
     request.open('GET', '/playerApp/players', true);
@@ -98,6 +98,7 @@ export default class PlayerSearch extends React.Component {
 		return(
   		<div>
     		<AutoComplete
+          hintText = "e.g 'RussellWestbrook'"
       		floatingLabelText="Current player selected:"
       		onClick={this.getPlayerIdsFromServer}
       		filter={AutoComplete.noFilter}

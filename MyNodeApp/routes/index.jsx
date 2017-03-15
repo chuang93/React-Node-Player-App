@@ -11,7 +11,6 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res) {
-
 	const context = {}; //no context for now.
 	const htmlRendered= ReactDOMServer.renderToString(
 		<StaticRouter

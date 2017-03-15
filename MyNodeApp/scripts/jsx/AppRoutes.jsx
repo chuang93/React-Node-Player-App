@@ -23,7 +23,7 @@ export default class AppRoutes extends React.Component {
         			"PlayerApp":"/playerapp",
         			"Contact":"/contact"
         		}}>
-                <Route path= "/" component = {HomeView} />
+            <Route path= "/" component = {HomeView} />
         		<Route path= "/playerapp" component= {PlayerModel}/>
         		<Route path= "/contact" component = {ContactView} />
         		</AppLayout>

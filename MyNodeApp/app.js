@@ -8,6 +8,7 @@ var MongoClient = require('mongodb').MongoClient
 // Connection URL
 var url = 'mongodb://localhost:27017/myNodeDb';
 // Use connect method to connect to the Server
+require('babel-register');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');

@@ -6,7 +6,7 @@ export default class HomeView extends React.Component {
 	}
 	render(){
 		return (
-			<h2>||Place Common Layout Rendering Here||</h2>
+			<h2>||HomeView Only||</h2>
 			);
 	}
 }

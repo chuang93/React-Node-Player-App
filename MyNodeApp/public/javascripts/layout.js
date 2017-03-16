@@ -9705,7 +9705,7 @@ var HomeView = function (_React$Component) {
 			return _react2.default.createElement(
 				'h2',
 				null,
-				'||Place Common Layout Rendering Here||'
+				'||HomeView Only||'
 			);
 		}
 	}]);
@@ -44634,7 +44634,7 @@ var AppRoutes = function (_React$Component) {
             "PlayerApp": "/playerapp",
             "Contact": "/contact"
           } },
-        _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _HomeView2.default }),
+        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _HomeView2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/playerapp', component: _playerProfileModel2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/contact', component: _Contact2.default })
       );

@@ -4,7 +4,6 @@ import playerwebapi from '../scripts/playerProfileWebAPI.js';
 import AppRoutes from '../scripts/jsx/AppRoutes.jsx';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import {match, createRoutes, RouterContext} from 'react-router';
 import {StaticRouter } from 'react-router';
 
 var router = express.Router();
@@ -25,9 +24,6 @@ router.get('/', function (req, res) {
   	collection.find().toArray(function(e,docs){
   		console.log(docs.length +" documents/records retrieved from mongo.");
           res.render('index', { 
-          	playerProfs: docs,
-          	title: "Player Profiles",
-            playerLog:"use URL to submit official NBA.com Player ID (e.g '.../201566' for Russell Westbrook).",
             appLayout : htmlRendered
           });
         });

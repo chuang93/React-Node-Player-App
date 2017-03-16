@@ -17,6 +17,7 @@ export default class PlayerSearch extends React.Component {
     	dataSourceConfig : {
   				text: 'textKey',
   				value: 'valueKey',
+          playerLog: '[Search Player to Find Player Log]',
 		}
     };
     this.getPlayerIdsFromServer = this.getPlayerIdsFromServer.bind(this);
@@ -57,8 +58,10 @@ export default class PlayerSearch extends React.Component {
     setPlayerLogByID(id){
         playerLogServerCalls.playerLogServerPromise(id).then(function(response){
           console.log(JSON.stringify(response));
-          document.getElementById('playerLog').innerHTML=JSON.stringify(response);
-        },function(error){
+          this.setState({
+            playerLog: JSON.stringify(response),
+          })
+        }.bind(this),function(error){
           console.log(error);
         });
     }
@@ -107,6 +110,7 @@ export default class PlayerSearch extends React.Component {
           onUpdateInput={this.handleUpdatePlayer}
       		dataSource={this.state.dataSource}
     		/><br />
+        <div>{this.state.playerLog}</div>
   		</div>
   				);
 			}

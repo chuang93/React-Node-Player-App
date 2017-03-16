@@ -1,6 +1,6 @@
 ﻿import express from 'express';
 import request from 'request';
-import playerwebapi from '../scripts/playerProfileWebAPI.js';
+import playerwebapi from '../scripts/webapi/playerProfileWebAPI.js';
 import AppRoutes from '../scripts/jsx/AppRoutes.jsx';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
@@ -20,16 +20,12 @@ router.get('/', function (req, res) {
     );
 
 	try{
-  	var collection = req.app.locals.db.collection('playerProfiles');
-  	collection.find().toArray(function(e,docs){
-  		console.log(docs.length +" documents/records retrieved from mongo.");
           res.render('index', { 
             appLayout : htmlRendered
           });
-        });
   }
   catch(error){
-  	console.log("failed to render player app endpoint, routing to error endpoint..");
+  	console.log("failed to perform server side rendering of player app routes..");
   	res.json(error);
 
   }

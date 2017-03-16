@@ -6,7 +6,8 @@
     "build": "webpack",
     "mongo": "powershell start-process ./startMongo.bat",
     "start": "node ./bin/server.js",
-    "entire": "npm-run-all build mongo start"
+    "entire": "npm-run-all build mongo start",
+    "refresh": "npm-run-all build start"
   },
   "description": "MyNodeApp",
   "author": {

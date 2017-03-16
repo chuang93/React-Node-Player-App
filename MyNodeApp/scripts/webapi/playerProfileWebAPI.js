@@ -1,8 +1,4 @@
-﻿//js wrapper-layer for external NBA stats REST API calls.
-//sample player game log api call: http://stats.nba.com/stats/playergamelog/?PlayerID=201566&Season=2016-17&SeasonType=Regular%20Season
-// y=getPlayerGameLogAJAX("201566","2016-17","Regular Season");
-//KEEP IN MIND CROSS ORIGIN RESOURCE SHARING WHEN YOU ARE BUILDING OTHER STUFF/PUBLISHING TO PRODUCTION. 
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+﻿var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 module.exports.playerLogPromise =function playerLogPromise(playerId, season, seasonType) {
     // Return a new promise.

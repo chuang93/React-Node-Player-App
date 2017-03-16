@@ -1,15 +1,8 @@
-﻿extends layout
-
-block content
-	h1= title
-	//- TO DO: REFACTOR THE BELOW CODE INTO AN HTML COMPONENT PURELY FOR PLAYER GAME LOG APP
-	#playerLog=body
-	//- script
-	//- 	|console.log("pug tip: highlight code for tabs, '|' for scripts")
-
-	if playerProfs
-		script.
-			console.log("playerProfs object pulled from Database.")
-		ul
-			each player in playerProfs
-				li=player.name +": " + player._id
+﻿doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/public/stylesheets/style.css')
+  body
+    #appLayout = appLayout
+    script(src = "/public/javascripts/layout.js")

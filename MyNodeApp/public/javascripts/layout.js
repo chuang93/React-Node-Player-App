@@ -16153,7 +16153,8 @@ var PlayerSearch = function (_React$Component) {
       dataSource: [],
       dataSourceConfig: {
         text: 'textKey',
-        value: 'valueKey'
+        value: 'valueKey',
+        playerLog: '[Search Player to Find Player Log]'
       }
     };
     _this.getPlayerIdsFromServer = _this.getPlayerIdsFromServer.bind(_this);
@@ -16198,8 +16199,10 @@ var PlayerSearch = function (_React$Component) {
     value: function setPlayerLogByID(id) {
       _serverCalls2.default.playerLogServerPromise(id).then(function (response) {
         console.log(JSON.stringify(response));
-        document.getElementById('playerLog').innerHTML = JSON.stringify(response);
-      }, function (error) {
+        this.setState({
+          playerLog: JSON.stringify(response)
+        });
+      }.bind(this), function (error) {
         console.log(error);
       });
     }
@@ -16252,7 +16255,12 @@ var PlayerSearch = function (_React$Component) {
           onUpdateInput: this.handleUpdatePlayer,
           dataSource: this.state.dataSource
         }),
-        _react2.default.createElement('br', null)
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'div',
+          null,
+          this.state.playerLog
+        )
       );
     }
   }]);

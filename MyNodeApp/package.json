@@ -55,6 +55,7 @@
     "babel-register": "^6.24.0",
     "babelify": "^7.3.0",
     "debug": "^2.6.1",
+    "json-loader": "^0.5.4",
     "mocha": "^3.2.0",
     "npm-check-updates": "^2.10.3",
     "npm-run-all": "^4.0.2",

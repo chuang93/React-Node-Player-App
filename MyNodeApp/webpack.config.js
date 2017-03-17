@@ -5,7 +5,6 @@ const webpack = require('webpack');
 module.exports = {
     entry: {
         layout: "./scripts/jsx/appRoutes.jsx",
-        devTests:"./scripts/webapi/nbajs.js",
     },
     output: {
         filename: "./public/javascripts/[Name].js"
@@ -17,9 +16,16 @@ module.exports = {
     },
     module: {
         loaders: [
+          { test: /\.json$/, loader: 'json-loader' },
           { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
           { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
         ]
+    },
+    node: {
+    console: true,
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
     },
 
     externals:[{

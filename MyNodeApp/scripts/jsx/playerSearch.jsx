@@ -7,6 +7,8 @@ import playerLogServerCalls from '../serverCalls.js';
  * The second example uses an array of values as its `dataSource`, and updates on focus.
  * Both examples have filtering disabled.
  */
+ //NOTE: This example from the prototype app does not meet best practices for react. You should seperate
+ // the request logic from the view logic and you should also pass in the data source as a prop instead of as the top level state.
 export default class PlayerSearch extends React.Component {
 	constructor(props) {
     //NEWER VERSIONS OF REACT REQUIRE A [handler].bind(this) since they are NOT AUTOBOUND.

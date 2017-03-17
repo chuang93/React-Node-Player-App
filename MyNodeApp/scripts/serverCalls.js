@@ -1,5 +1,4 @@
-//test if ajax call to my rest service will load the json into the player log ID in playerAPp.pug
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+// once I have built the server side endpoints, this is the domain logic that pulls from my server and can be  called by the front end
 
 module.exports.playerLogServerPromise = function playerLogServerPromise(id){
   return new Promise(function(resolve,reject) {

@@ -9,7 +9,7 @@ import ActionHome from 'material-ui/svg-icons/action/home';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
-import {Link, Route} from 'react-router-dom';
+import {NavLink, Route} from 'react-router-dom';
 import HomeView from './HomeView.jsx';
 const muiTheme = getMuiTheme({
   fontFamily: 'Arial',
@@ -72,17 +72,18 @@ export default class AppLayout extends React.Component {
           onRequestChange={(open) => this.setState({open})}
         >
           <MenuItem> 
-            <Link to ={this.props.routes.Home} onClick={this.handleToggle}>
+            <NavLink to ={this.props.routes.Home} onClick={this.handleToggle}>
             <IconButton
               iconStyle={styles.mediumIcon}
               style={styles.medium}
             >
               <ActionHome />
             </IconButton>
-             </Link>
+             </NavLink>
           </MenuItem>
-          <MenuItem><Link to ={this.props.routes.PlayerApp} onClick={this.handleToggle}>NBA Player Log App</Link></MenuItem>
-          <MenuItem><Link to ={this.props.routes.Contact} onClick={this.handleToggle}>About Me - Contact</Link></MenuItem>
+          <MenuItem><NavLink to ={this.props.routes.PlayerApp} onClick={this.handleToggle}>NBA Player Log App</NavLink></MenuItem>
+          <MenuItem><NavLink to ={this.props.routes.PlayerDashBoard} onClick={this.handleToggle}>Player Dashboard App</NavLink></MenuItem>
+          <MenuItem><NavLink to ={this.props.routes.Contact} onClick={this.handleToggle}>About Me - Contact</NavLink></MenuItem>
         </Drawer>
           {this.props.children}
       {/*NEED THIS PROPS.CHILDREN TO PASS IN CHILD ROUTES IN THE ROUTER OF INDEX*/}

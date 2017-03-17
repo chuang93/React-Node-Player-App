@@ -5,6 +5,7 @@ const webpack = require('webpack');
 module.exports = {
     entry: {
         layout: "./scripts/jsx/appRoutes.jsx",
+        devTests:"./scripts/webapi/nbajs.js",
     },
     output: {
         filename: "./public/javascripts/[Name].js"

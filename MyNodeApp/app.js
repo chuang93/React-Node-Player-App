@@ -3,6 +3,7 @@
     , name = 'My App';
 debug("booting app up ...");
 var testMongo= require('./tests/testmongoconnect');
+var nbaPlayerSeedDatabase = require('./scripts/webapi/data/playerDatabase.js');
 var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
 // Connection URL

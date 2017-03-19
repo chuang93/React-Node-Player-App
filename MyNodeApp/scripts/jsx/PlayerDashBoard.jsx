@@ -1,19 +1,49 @@
 import React from 'react';
 import AutoComplete from 'material-ui/AutoComplete';
 import PlayerServer from '../serverCalls';
-
+import NbaJS from '../webapi/nbajs.js';
+import PlayerFaceCard from './PlayerFaceCard.jsx';
+import YoutubeModule from './youtubeModule.jsx';
 export default class PlayerDashBoard extends React.Component {
 	constructor(props){
 		super(props);
         this.state={
-            playerName:'',
+            searchText:'',
+            player:{
+                playerName: "",
+                teamName: "",
+                playerProfile:{},
+                playerInfo:{},
+            },
             dataSource:[]
 
             //ALL IMPORTANT ELEMENTS THAT CAN BE PULLED AND LIFTED DOWN INTO SEPERATE APPS NEED TO COME FROM THIS FIRST STATE
         };
         this.loadPlayers = this.loadPlayers.bind(this);
+        this.handleUpdatePlayer = this.handleUpdatePlayer.bind(this);
 	}
+    handleUpdatePlayer(searchText){
+        const playerObject = NbaJS.getPlayer(searchText);
+        var getPlayerInfoPromise = NbaJS.getPlayerInfo(searchText);
+        var getPlayerProfilePromise = NbaJS.getPlayerProfile(searchText);
+        Promise.all([getPlayerInfoPromise,getPlayerProfilePromise]).then(function(values){
+            console.log(values);
+            const playerInfo=values[0];
+            const playerProfile=values[1];
+            this.setState({
+            searchText:searchText,
+            player:{
+                playerName: playerObject.fullName,
+                teamName: "test",
+                playerProfile:playerProfile,
+                playerInfo:playerInfo,
+            },
+            });
 
+        }.bind(this)).catch(reason => {
+            console.log(reason);
+        });
+    }
     loadPlayers(){
         console.log("initializing players.. ");
         if(this.state.dataSource.length=== 0){
@@ -31,7 +61,7 @@ export default class PlayerDashBoard extends React.Component {
             });        
         }
         else{
-            console.log("players already initialized or allPlayers didnt load right...");
+            //console.log("players already initialized or allPlayers didnt load right...");
         }
     }
     render() {
@@ -45,13 +75,17 @@ export default class PlayerDashBoard extends React.Component {
                 floatingLabelText="Current player selected:"
                 filter={AutoComplete.fuzzyFilter}
                 onClick={this.loadPlayers}
-                // openOnFocus={true}
                 // searchText={this.state.playerName}
-                // onUpdateInput={this.handleUpdatePlayer}
+                onNewRequest={this.handleUpdatePlayer}
                 dataSource={this.state.dataSource}
                 maxSearchResults={5}
                 />
                 <br />
+                <div>{this.state.player.playerName + " " +this.state.player.teamName}</div>
+                <PlayerFaceCard
+                    playerInfo={this.state.player.playerInfo}
+                />
+{/*                <div>{JSON.stringify(this.state.player.playerProfile)}</div>  */}       
             </div>
             );
 	}

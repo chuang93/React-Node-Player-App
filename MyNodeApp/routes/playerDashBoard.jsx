@@ -45,7 +45,7 @@ router.get('/players', function(req,res){
 router.get('/teams', function(req,res){
   try{
     var collection = req.app.locals.db.collection('teamData');
-    collection.find( {} , { _id:1 } ).toArray(function(e,docs){
+    collection.find( {} , { _id:1 , "object.teamId":1} ).toArray(function(e,docs){
           res.json(docs);
         });
   }
@@ -55,5 +55,19 @@ router.get('/teams', function(req,res){
   }
 });
 
+router.get('/teams/:id', function (req, res) {
+    
+    var collection = req.app.locals.db.collection('teamData');
+    collection.find({"object.teamId":parseInt(req.params.id)}, {_id:1} ).toArray(function(e,docs){
+      if(docs.length===0){
+        console.log("team ID: " +req.params.id + " is not stored in database");
+        res.json("no team");
+      }
+      else{
+        console.log("team ID: " +req.params.id + "exists, pulling from Mongo Collection: 'playerProfiles'.");
+        res.json(docs[0]);
+      }
+    }); 
+});    
 
 module.exports = router;

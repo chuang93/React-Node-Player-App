@@ -2,11 +2,10 @@
     , http = require('http')
     , name = 'My App';
 debug("booting app up ...");
-var testMongo= require('./tests/testmongoconnect');
-var nbaPlayerSeedDatabase = require('./scripts/webapi/data/playerDatabase.js');
+//var testMongo= require('./tests/testmongoconnect');
+//var nbaPlayerSeedDatabase = require('./scripts/webapi/data/playerDatabase.js');
 var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
-// Connection URL
 var url = 'mongodb://localhost:27017/myNodeDb';
 // Use connect method to connect to the Server
 require('babel-register');
@@ -30,7 +29,6 @@ MongoClient.connect(url, function(err, db) {
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-// uncomment after placing your favicon in /public
 app.use(favicon(__dirname + '/public/icon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -50,8 +48,8 @@ app.use(function (req, res, next) {
     next(err);
 });
 
-// error handlers
 
+// error handlers
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {

@@ -60044,9 +60044,18 @@ var PlayerFaceCard = function (_React$Component) {
 		key: 'render',
 		value: function render() {
 			return _react2.default.createElement(
-				'ul',
+				'div',
 				null,
-				this.getCommonPlayerInfoArray()
+				_react2.default.createElement(
+					'ul',
+					null,
+					this.getCommonPlayerInfoArray()
+				),
+				_react2.default.createElement(
+					'button',
+					null,
+					'Test '
+				)
 			);
 		}
 	}]);

@@ -27,9 +27,12 @@ export default class PlayerFaceCard extends React.Component{
 
 	render(){
 		return(
+			<div>
 			<ul>
 				{this.getCommonPlayerInfoArray()}
 			</ul>
+			<button>Test </button>
+			</div>
 			);
 	}
 }

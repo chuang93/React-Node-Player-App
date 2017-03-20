@@ -109,7 +109,7 @@ function getLogFromNbaStats(req,res,name,headers){
           gameLogJson:body
         };
 
-        collection.insert(datamodel)
+        collection.insert(datamodel);
         res.json(datamodel);
       } 
     });

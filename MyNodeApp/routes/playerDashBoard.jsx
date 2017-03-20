@@ -42,6 +42,35 @@ router.get('/players', function(req,res){
   }
 });
 
+router.get('/players/:id',function(req,res){
+  try{
+    var collection = req.app.locals.db.collection('playerDashBoard');
+    collection.find( {} , { _id:1, imageUrl:1 } ).toArray(function(e,docs){
+          res.json(docs);
+        });
+  }
+  catch(error){
+    res.json(error);
+
+  }
+});
+
+router.get('/players/image/:imageURL',function(req,res){
+    try{
+    var collection = req.app.locals.db.collection('playerDashBoard');
+    var dataModel={
+      _id:201566, 
+      imageURL:req.params.imageURL,
+    };
+    collection.insert(dataModel);
+    res.json(dataModel);
+  }
+  catch(error){
+    res.json(error);
+
+  }
+});
+
 router.get('/teams', function(req,res){
   try{
     var collection = req.app.locals.db.collection('teamData');
@@ -68,6 +97,7 @@ router.get('/teams/:id', function (req, res) {
         res.json(docs[0]);
       }
     }); 
-});    
+});
+
 
 module.exports = router;

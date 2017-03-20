@@ -9,6 +9,7 @@ var MongoClient = require('mongodb').MongoClient
 var url = 'mongodb://localhost:27017/myNodeDb';
 // Use connect method to connect to the Server
 require('babel-register');
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -18,6 +19,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var playerApp = require('./routes/playerAppRoute');
 var playerDashBoard = require('./routes/playerDashBoard');
+var contact = require('./routes/contact');
 
 var app = express();
 // view engine setup
@@ -38,6 +40,7 @@ app.use(cookieParser());
 console.log("static path: " +path.join(__dirname, 'public'));
 app.use("/public", express.static(path.join(__dirname, 'public')));
 app.use('/', index);
+app.use('/contact',contact);
 app.use('/playerapp', playerApp);
 app.use('/playerdashboard', playerDashBoard);
 

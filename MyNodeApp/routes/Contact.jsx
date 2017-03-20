@@ -1,4 +1,4 @@
-﻿import express from 'express';
+import express from 'express';
 import AppRoutes from '../scripts/jsx/AppRoutes.jsx';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
@@ -9,7 +9,7 @@ import {StaticRouter } from 'react-router';
 var router = express.Router();
 
 
-/* GET home page. */
+/* GET Contacts. */
 router.get('/', function (req, res) {
 	const context = {}; //no context for now.
 	const htmlRendered= ReactDOMServer.renderToString(
@@ -20,7 +20,7 @@ router.get('/', function (req, res) {
 		</StaticRouter>
 		);
     res.render('index', 
-    	{ 
+    	{
     	   appLayout: htmlRendered });
 });
 

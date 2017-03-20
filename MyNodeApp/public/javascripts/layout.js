@@ -53323,12 +53323,56 @@ var ContactView = function (_React$Component) {
 	}
 
 	_createClass(ContactView, [{
-		key: 'render',
+		key: "render",
 		value: function render() {
 			return _react2.default.createElement(
-				'h2',
+				"div",
 				null,
-				'||Contact the Great Redeemteam Placeholder for Contact View||'
+				_react2.default.createElement(
+					"figure",
+					{ className: "snip1585" },
+					_react2.default.createElement("img", { src: "/public/images/githubsnippet.JPG" }),
+					_react2.default.createElement(
+						"figcaption",
+						null,
+						_react2.default.createElement(
+							"h3",
+							null,
+							"Github ",
+							_react2.default.createElement(
+								"span",
+								null,
+								"Projects"
+							)
+						)
+					),
+					_react2.default.createElement("a", { href: "https://github.com/chuang93" })
+				),
+				_react2.default.createElement(
+					"figure",
+					{ className: "snip1585" },
+					_react2.default.createElement("img", { src: "/public/images/linkedinsnippet.JPG" }),
+					_react2.default.createElement(
+						"figcaption",
+						null,
+						_react2.default.createElement(
+							"h3",
+							null,
+							"Linkedin ",
+							_react2.default.createElement(
+								"span",
+								null,
+								"Profile"
+							)
+						)
+					),
+					_react2.default.createElement("a", { href: "https://www.linkedin.com/in/chuang93/" })
+				),
+				_react2.default.createElement(
+					"h3",
+					null,
+					"Email: chuang93@gmail.com"
+				)
 			);
 		}
 	}]);
@@ -53414,15 +53458,17 @@ var PlayerDashBoard = function (_React$Component) {
             var playerObject = _nbajs2.default.getPlayer(searchText);
             var getPlayerInfoPromise = _nbajs2.default.getPlayerInfo(searchText);
             var getPlayerProfilePromise = _nbajs2.default.getPlayerProfile(searchText);
-            Promise.all([getPlayerInfoPromise, getPlayerProfilePromise]).then(function (values) {
+            var getPlayerTeamPromise = _nbajs2.default.getTeamNameForPlayer(searchText);
+            Promise.all([getPlayerInfoPromise, getPlayerProfilePromise, getPlayerTeamPromise]).then(function (values) {
                 console.log(values);
                 var playerInfo = values[0];
                 var playerProfile = values[1];
+                var playerTeam = values[2]._id;
                 this.setState({
                     searchText: searchText,
                     player: {
                         playerName: playerObject.fullName,
-                        teamName: "test",
+                        teamName: playerTeam,
                         playerProfile: playerProfile,
                         playerInfo: playerInfo
                     }
@@ -53475,13 +53521,10 @@ var PlayerDashBoard = function (_React$Component) {
                     maxSearchResults: 5
                 }),
                 _react2.default.createElement('br', null),
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    this.state.player.playerName + " " + this.state.player.teamName
-                ),
                 _react2.default.createElement(_PlayerFaceCard2.default, {
-                    playerInfo: this.state.player.playerInfo
+                    playerInfo: this.state.player.playerInfo,
+                    playerName: this.state.player.playerName,
+                    teamName: this.state.player.teamName
                 })
             );
         }
@@ -60025,7 +60068,7 @@ var PlayerFaceCard = function (_React$Component) {
 			if (this.props.playerInfo.commonPlayerInfo !== undefined) {
 				var commonPlayerObj = this.props.playerInfo.commonPlayerInfo[0];
 				console.log(commonPlayerObj);
-
+				console.log(this.props.teamName);
 				var tupleArray = _parsingHelpers2.default.getTupleArrayProperties(commonPlayerObj);
 
 				var list = tupleArray.map(function (element) {
@@ -60047,9 +60090,33 @@ var PlayerFaceCard = function (_React$Component) {
 				'div',
 				null,
 				_react2.default.createElement(
-					'ul',
-					null,
-					this.getCommonPlayerInfoArray()
+					'figure',
+					{ className: 'snip1579' },
+					_react2.default.createElement('img', { src: 'http://img.bleacherreport.net/img/images/photos/003/570/165/hi-res-39042215448e6d76b78bcba00c373101_crop_north.jpg?1454256739&w=630&h=420', alt: 'profile-sample2' }),
+					_react2.default.createElement(
+						'figcaption',
+						null,
+						_react2.default.createElement(
+							'h3',
+							null,
+							this.props.playerName
+						),
+						_react2.default.createElement(
+							'h5',
+							null,
+							this.props.teamName
+						),
+						_react2.default.createElement(
+							'blockquote',
+							null,
+							_react2.default.createElement(
+								'ul',
+								null,
+								this.getCommonPlayerInfoArray()
+							)
+						)
+					),
+					_react2.default.createElement('a', { href: '#' })
 				),
 				_react2.default.createElement(
 					'button',

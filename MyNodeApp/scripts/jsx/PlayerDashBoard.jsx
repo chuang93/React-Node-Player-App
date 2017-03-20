@@ -26,15 +26,17 @@ export default class PlayerDashBoard extends React.Component {
         const playerObject = NbaJS.getPlayer(searchText);
         var getPlayerInfoPromise = NbaJS.getPlayerInfo(searchText);
         var getPlayerProfilePromise = NbaJS.getPlayerProfile(searchText);
-        Promise.all([getPlayerInfoPromise,getPlayerProfilePromise]).then(function(values){
+        var getPlayerTeamPromise = NbaJS.getTeamNameForPlayer(searchText);
+        Promise.all([getPlayerInfoPromise,getPlayerProfilePromise,getPlayerTeamPromise]).then(function(values){
             console.log(values);
             const playerInfo=values[0];
             const playerProfile=values[1];
+            const playerTeam = values[2]._id;
             this.setState({
             searchText:searchText,
             player:{
                 playerName: playerObject.fullName,
-                teamName: "test",
+                teamName: playerTeam,
                 playerProfile:playerProfile,
                 playerInfo:playerInfo,
             },
@@ -81,11 +83,12 @@ export default class PlayerDashBoard extends React.Component {
                 maxSearchResults={5}
                 />
                 <br />
-                <div>{this.state.player.playerName + " " +this.state.player.teamName}</div>
                 <PlayerFaceCard
                     playerInfo={this.state.player.playerInfo}
+                    playerName={this.state.player.playerName}
+                    teamName={this.state.player.teamName}
                 />
-{/*                <div>{JSON.stringify(this.state.player.playerProfile)}</div>  */}       
+                {/*TO DO: IMPLEMENT SECTION THAT TAKES CARE OF THE PLAYER PROFILE INFORMATION*/}      
             </div>
             );
 	}

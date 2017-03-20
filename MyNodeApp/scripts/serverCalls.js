@@ -1,4 +1,5 @@
-// once I have built the server side endpoints, this is the domain logic that pulls from my server and can be  called by the front end
+
+//CONTROLLER FOR RETRIEVING DATA FROM THE SERVER. TAKE THE DATA FROM MONGODB AND PARSE IT BEFORE SENDING IT TO THE VIEW.
 var request = require('request');
 
 module.exports.playerLogServerPromise = function playerLogServerPromise(id){
